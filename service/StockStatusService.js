@@ -32,8 +32,8 @@ const updateSousStocks = async (sousStocks, session) => {
         // Update sous stock with new quantity and price
         existingSousStock.quantity = adjustedQuantity;
 
-        // Calculate new stock quantity and update stock
-        existingStock.quantity -= substractedQuantity;
+        // Calculate new stock quantity and update stock and if negative put it to 0
+        existingStock.quantity = Math.max(0, existingStock.quantity - substractedQuantity);
 
         // Save the updated sous stock
         await existingSousStock.save({ session });
