@@ -1476,7 +1476,7 @@ const AddPaymentToReceipt = asyncErrorHandler(async (req, res, next) => {
     }
 
     //check if the receipt is status between 0, 1, 2, 3
-    if([0, 1, 2, 3].includes(existingReceipt.status)){
+    if([0, 1, 2].includes(existingReceipt.status)){
         const err =new CustomError(`Cette commande n'est pas prête à être payée, vérifiez statut de la commande`, 400);
         return next(err);
     }
@@ -1555,8 +1555,8 @@ const AddFullPaymentToReceipt = asyncErrorHandler(async (req, res, next) => {
     if(!existingReceipt){
         return next(new CustomError('Commande non trouvée', 404));
     }
-    //check if the receipt is status between 0, 1, 2, 3
-    if([0, 1, 2, 3].includes(existingReceipt.status)){
+    //check if the receipt is status between 0, 1, 2
+    if([0, 1, 2].includes(existingReceipt.status)){
         const err =new CustomError(`Cette commande n'est pas prête pour le paiement intégral, vérifiez statut de la commande`, 400);
         return next(err);
     }
